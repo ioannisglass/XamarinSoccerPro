@@ -1,0 +1,51 @@
+﻿Splash_Monthly = 1 Month
+Splash_MonthlyTip = Costs benefit
+Splash_Featured = 3 Month
+Splash_FeaturedTip = GET 10% OFF
+Splash_Yearly = 1 Year
+Splash_YearlyTip = Get 15% off
+
+Login_Email = EMAIL
+Login_License = LICENSE
+Login_Login = LOGIN
+Login_BuyNow = Don't have a license? Just register now
+Login_Invalid = Invalid Login, try again
+
+Settings_PremiumTips = Premium Tips
+Settings_TipsByTipsters = Tips By Tipsters
+Settings_Favorites = Favorites
+Settings_LiveAlert = Live Alert
+Settings_RaceToGoal = Race To Goal
+
+Main_Dashboard = Dashboard 
+Main_Live = Live
+Main_Favorite = Favorite
+Main_Tips = Tips
+Main_Settings = Settings
+
+Dashboard_ExpandMatches = Expand Matches
+Dashboard_Calendar = Select Date
+Dashboard_Yesterday = Yesterday
+Dashboard_Today = Today
+Dashboard_Tomorrow = Tomorrow
+
+Tips_PremiumTips = Premium Tips
+Tips_TipsByTipsters = Tips By Tipsters
+
+Favorite_NoGameTitle = You don't have any favorite games yet
+Favorite_NoGameSubTitle = Add a favorite game by clicking on the star
+NoLiveGames = There are no live games at this time, try again later
+NoLiveAlerts = There are currently no alerts, try again later
+
+setting_pushnotification = PUSH NOTIFICATION
+setting_ad = Goals and Live Alert will be notified in favorite games
+
+Timeline =  Timeline
+Prediction = Prediction
+Statistic = Statistic
+Lineup = Lineup
+Rank = Rank
+
+OK = OK
+Cancel = Cancel
+Error = Error

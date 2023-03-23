@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"  
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+                xmlns:local="clr-namespace:SokkerPro.Views;assembly=SokkerPro"
+                 x:Class="SokkerPro.Views.LoginPage"  
+             BackgroundColor="#00CC66">
+    <ContentPage.Content>
+        <Grid Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0" VerticalOptions="Center" RowSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image
+                    Source="logo_tda_br.png" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <local:YiEntry x:Name="Email" Text="{Binding Email}" Placeholder="{Binding Strings[Login_Email]}"   
+                    PlaceholderColor="Black" HeightRequest="40"   
+                    Keyboard="Email"  Grid.Row="1" Grid.ColumnSpan="2"
+                    BackgroundColor="#F2F2F2"/>
+                <local:YiEntry x:Name="Password" Text="{Binding Password}" Placeholder="{Binding Strings[Login_License]}"   
+                    PlaceholderColor="Black" HeightRequest="40"   
+                    IsPassword="True"  Grid.Row="2" Grid.ColumnSpan="2"
+                    BackgroundColor="#F2F2F2"/>
+                <Button Command="{Binding SubmitCommand}" Text="{Binding Strings[Login_Login]}"
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="#F2F2F2" Grid.Row="3" Grid.Column="1"/>
+            </Grid>
+            <Label
+                Grid.Row="1" Text="{Binding Strings[Login_BuyNow]}"
+                HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                VerticalTextAlignment="Center" VerticalOptions="Center"
+                FontSize="15" TextColor="White" FontAttributes="Bold">
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.sokkerpro.com" />
+                </Label.GestureRecognizers>
+
+            </Label>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>  

@@ -1,0 +1,504 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="SokkerPro.Views.SeasonStat">
+    <StackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0">
+                
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="0" Margin="10, 15, 15, 5">
+                <Button Text="ADVANCED RANKING" Padding="3, 3, 3, 5" Font="15" CornerRadius="10" BackgroundColor="LightGreen" TextColor="White"/>
+            </Grid>
+            
+        </Grid>
+
+        <ScrollView Orientation="Vertical">
+            <StackLayout>
+                <Grid ColumnSpacing="10" RowSpacing="10" Margin="10, 5, 10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame
+                    Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" CornerRadius="20" BackgroundColor="#6B6B6B" 
+                    Padding="15, 4, 5, 5">
+                        <Label
+                        Text="CORNER" FontSize="15" TextColor="White" HorizontalTextAlignment="Start"/>
+                        <Frame.GestureRecognizers>
+                            <!--<TapGestureRecognizer Tapped=""/>-->
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame
+                    Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" CornerRadius="10" BackgroundColor="#333333">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <ff:CachedImage Grid.Row="0" Grid.Column="0" Source="{Binding str_cor_Total_MarkPath}"
+                                   VerticalOptions="End" HorizontalOptions="Center" Aspect="AspectFit"/>
+                            <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_cor_Total_Name}"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="0" Grid.Column="1" TextColor="White" FontSize="27" Text="{Binding str_cor_Total_Score}"
+                                   VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontSize="10" Text="More Corner"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="1">
+                        <Label Text="Get More Corner" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#33CB66" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_cor_Make_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_cor_Make_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_cor_Make_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="2">
+                        <Label Text="Take More Corner" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#FD3333" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_cor_Take_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_cor_Take_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_cor_Take_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <Grid ColumnSpacing="10" RowSpacing="10" Margin="10, 5, 10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame
+                    Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" CornerRadius="20" BackgroundColor="#6B6B6B" 
+                    Padding="15, 4, 5, 5">
+                        <Label
+                        Text="GOAL" FontSize="15" TextColor="White" HorizontalTextAlignment="Start"/>
+                        <Frame.GestureRecognizers>
+                            <!--<TapGestureRecognizer Tapped=""/>-->
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame
+                    Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" CornerRadius="10" BackgroundColor="#333333">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <ff:CachedImage Grid.Row="0" Grid.Column="0" Source="{Binding str_goal_Total_MarkPath}"
+                                   VerticalOptions="End" HorizontalOptions="Center" Aspect="AspectFit"/>
+                            <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_goal_Total_Name}"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="0" Grid.Column="1" TextColor="White" FontSize="27" Text="{Binding str_goal_Total_Score}"
+                                   VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontSize="10" Text="More Goal"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="1">
+                        <Label Text="Get More Goal" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#33CB66" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_goal_Make_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_goal_Make_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_goal_Make_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="2">
+                        <Label Text="Take More Goal" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#FD3333" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_goal_Take_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_goal_Take_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_goal_Take_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <Grid ColumnSpacing="10" RowSpacing="10" Margin="10, 5, 10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame
+                    Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" CornerRadius="20" BackgroundColor="#6B6B6B" 
+                    Padding="15, 4, 5, 5">
+                        <Label
+                        Text="YELLOW CARD" FontSize="15" TextColor="White" HorizontalTextAlignment="Start"/>
+                        <Frame.GestureRecognizers>
+                            <!--<TapGestureRecognizer Tapped=""/>-->
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame
+                    Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" CornerRadius="10" BackgroundColor="#333333">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <ff:CachedImage Grid.Row="0" Grid.Column="0" Source="{Binding str_yell_Total_MarkPath}"
+                                   VerticalOptions="End" HorizontalOptions="Center" Aspect="AspectFit"/>
+                            <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_yell_Total_Name}"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="0" Grid.Column="1" TextColor="White" FontSize="27" Text="{Binding str_yell_Total_Score}"
+                                   VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontSize="10" Text="More Yellow Card"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="1">
+                        <Label Text="Get More Yellow Card" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#33CB66" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_yell_Make_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_yell_Make_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_yell_Make_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="2">
+                        <Label Text="Take More Yellow Card" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#FD3333" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_yell_Take_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_yell_Take_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_yell_Take_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <Grid ColumnSpacing="10" RowSpacing="10" Margin="10, 5, 10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame
+                    Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" CornerRadius="20" BackgroundColor="#6B6B6B" 
+                    Padding="15, 4, 5, 5">
+                        <Label
+                        Text="BALL POSSESSION" FontSize="15" TextColor="White" HorizontalTextAlignment="Start"/>
+                        <Frame.GestureRecognizers>
+                            <!--<TapGestureRecognizer Tapped=""/>-->
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <StackLayout Grid.Column="0" Grid.Row="1">
+                        <Label Text="Get More Ball Possession" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#33CB66" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_poss_Make_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_poss_Make_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_poss_Make_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="1">
+                        <Label Text="Take More Ball Possession" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#FD3333" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <Image Source="{Binding str_poss_Take_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_poss_Take_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_poss_Take_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <Grid ColumnSpacing="10" RowSpacing="10" Margin="10, 5, 10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame
+                    Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" CornerRadius="20" BackgroundColor="#6B6B6B" 
+                    Padding="15, 4, 5, 5">
+                        <Label
+                        Text="FOUL" FontSize="15" TextColor="White" HorizontalTextAlignment="Start"/>
+                        <Frame.GestureRecognizers>
+                            <!--<TapGestureRecognizer Tapped=""/>-->
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame
+                    Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" CornerRadius="10" BackgroundColor="#333333">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="6*"/>
+                                <RowDefinition Height="3*"/>
+                            </Grid.RowDefinitions>
+
+                            <ff:CachedImage Grid.Row="0" Grid.Column="0" Source="{Binding str_foul_Total_MarkPath}"
+                                   VerticalOptions="End" HorizontalOptions="Center" Aspect="AspectFit"/>
+                            <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_foul_Total_Name}"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="0" Grid.Column="1" TextColor="White" FontSize="27" Text="{Binding str_foul_Total_Score}"
+                                   VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="1" TextColor="White" FontSize="10" Text="More Corner"
+                                   VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="1">
+                        <Label Text="Get More Foul" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#33CB66" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_foul_Make_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_foul_Make_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_foul_Make_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                    Grid.Column="1" Grid.Row="2">
+                        <Label Text="Take More Foul" FontSize="10" HorizontalTextAlignment="Start"/>
+                        <Frame CornerRadius="10" BackgroundColor="#FD3333" HeightRequest="60" Padding="5, 5, 5, 5">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                    <ff:CachedImage Source="{Binding str_foul_Take_MarkPath}"
+                                   VerticalOptions="Center" Aspect="AspectFit"/>
+                                    <Label Grid.Column="0" Grid.Row="1" TextColor="White" FontSize="10" Text="{Binding str_foul_Take_Name}"
+                                   VerticalTextAlignment="Center"/>
+                                </StackLayout>
+
+                                <Label Grid.Column="1" Grid.Row="0" TextColor="White" FontSize="27" Text="{Binding str_foul_Take_Score}"
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

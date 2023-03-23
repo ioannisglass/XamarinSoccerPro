@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "358803756788",
+    "firebase_url": "https://sokkerpro-cf87c.firebaseio.com",
+    "project_id": "sokkerpro-cf87c",
+    "storage_bucket": "sokkerpro-cf87c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358803756788:android:13595d53f597adef8d30a1",
+        "android_client_info": {
+          "package_name": "com.yiyi45.sokkerpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358803756788-4q4b1grda4hs4dp0avlsm8vploh86nsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4LPAQ-CsdbQchcnNiwra-eINqkHsRVW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358803756788-4q4b1grda4hs4dp0avlsm8vploh86nsk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

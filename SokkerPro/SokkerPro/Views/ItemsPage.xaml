@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local="clr-namespace:SokkerPro.Views;assembly=SokkerPro"
+             mc:Ignorable="d"
+             x:Class="SokkerPro.Views.ItemsPage"
+             x:Name="BrowseItemsPage">
+
+    <AbsoluteLayout>
+        <StackLayout
+            Spacing="0"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <AbsoluteLayout
+                Padding="0,25,0,0"
+                BackgroundColor="{StaticResource NavigationPrimary}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                HeightRequest="65">
+                <Grid
+                    RowSpacing="0"
+                    AbsoluteLayout.LayoutBounds="0,9,80,47"
+                    AbsoluteLayout.LayoutFlags="None">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                        
+                    <Image
+                        Source="calendar.png" Grid.Row="0">
+                    </Image>
+                    <Label x:Name="curDate" Text="{Binding Strings[Dashboard_Today]}" FontSize="15" FontAttributes="Bold" 
+                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        HorizontalOptions="CenterAndExpand" VerticalOptions="Center"
+                        Grid.Row="1"/>
+                </Grid>
+                <StackLayout
+                    BackgroundColor="Transparent"
+                    AbsoluteLayout.LayoutBounds="0,9,80,47"
+                    AbsoluteLayout.LayoutFlags="None">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Calendar_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+                <Grid
+                    RowSpacing="0"
+                    AbsoluteLayout.LayoutBounds="70,9,140,47"
+                    AbsoluteLayout.LayoutFlags="None">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ExpandMatches"/>
+                    </Grid.GestureRecognizers>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0">
+                        <Frame
+                            BackgroundColor="Black" CornerRadius="5"
+                            Padding="0" Margin="0" HasShadow="False"
+                            WidthRequest="30" HeightRequest="30"
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label
+                                x:Name="TotalLive"
+                                Text="0" TextColor="#FF3300" FontSize="15" FontAttributes="Bold"
+                                HorizontalOptions="Center" VerticalOptions="Center"
+                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </Frame>
+                        <Frame
+                            BackgroundColor="Black" CornerRadius="5"
+                            Padding="0" Margin="0" HasShadow="False"
+                            WidthRequest="30" HeightRequest="30"
+                            HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label
+                                x:Name="TotalMatch"
+                                Text="0" TextColor="White" FontSize="15" FontAttributes="Bold"
+                                HorizontalOptions="Center" VerticalOptions="Center"
+                                HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </Frame>
+                    </StackLayout>
+                    <Label
+                        Text="{Binding Strings[Dashboard_ExpandMatches]}" FontSize="15" FontAttributes="Bold"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        Grid.Row="1"/>
+                </Grid>
+                <Image
+                    Source="logo_tda_br.png" Margin="0,0,10,0"
+                    AbsoluteLayout.LayoutFlags="XProportional"
+                    AbsoluteLayout.LayoutBounds="1,11,168,41"/>
+            </AbsoluteLayout>
+            <local:YiListView
+                x:Name="LeaguesList"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true" 
+                IsGroupingEnabled="True"  SelectionMode="None"
+                ItemTapped="OnLeagueSelected">
+                <local:YiListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                Padding="10" BackgroundColor="#F1F1F1" HorizontalOptions="FillAndExpand"
+                                RowSpacing="0" ColumnSpacing="0">
+
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="24"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="4"/>
+                                    <RowDefinition Height="15"/>
+                                    <RowDefinition Height="5"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid
+                                    Grid.Row="0" Grid.RowSpan="3"
+                                    Grid.Column="0" Grid.ColumnSpan="8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SeasonStatCommand}" CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ExpandCommand}" CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Grid>
+
+                                <ff:CachedImage Grid.Column="0" Grid.Row="1"  Source="{Binding CountryFlag}" Aspect="AspectFit"/>
+                                <StackLayout
+                                    Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                                    <Label Text="{Binding CountryName}" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                                    <Label Text="{Binding LeagueName}" FontSize="12" TextColor="Black"/>
+                                </StackLayout>
+                                <Frame
+                                    BackgroundColor="#FF3300" CornerRadius="7" IsVisible="{Binding LiveCnt}" HasShadow="False"
+                                    Grid.Column="3" Grid.Row="0" Grid.RowSpan="3" Padding="0" >
+                                    <Label
+                                        Text="{Binding LiveCnt}" TextColor="White" FontAttributes="Bold" FontSize="12"
+                                        HorizontalOptions="Center" VerticalOptions="Center" 
+                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                </Frame>
+                                <Frame
+                                    BackgroundColor="#D7D7D7" CornerRadius="7" IsVisible="{Binding TotalCnt}" HasShadow="False"
+                                    Grid.Column="5" Grid.Row="0" Grid.RowSpan="3" Padding="0" >
+                                    <Label
+                                        Text="{Binding TotalCnt}" TextColor="Black" FontAttributes="Bold" FontSize="12"
+                                        HorizontalOptions="Center" VerticalOptions="Center" 
+                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                </Frame>
+                                <Image Grid.Column="7" Grid.Row="0" Grid.RowSpan="3"
+                                    Source="{Binding ActionImage}" Aspect="AspectFit" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </local:YiListView.GroupHeaderTemplate>
+                
+                <local:YiListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                HorizontalOptions="FillAndExpand" Padding="10"
+                                RowSpacing="5" ColumnSpacing="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="12"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="80"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="24"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="12"/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="6"/>
+                                </Grid.RowDefinitions>
+
+                                <Image
+                                    Source="red_card.png" Grid.Row="0" Grid.Column="0" IsVisible="{Binding HomeHasRedCard}"/>
+                                <Label
+                                    Grid.Row="0" Grid.Column="1"
+                                    Text="{Binding HomeName}" TextColor="{Binding HomeNameColor}" FontSize="16" LineBreakMode="TailTruncation"
+                                    HorizontalOptions="End" HorizontalTextAlignment="End"
+                                    VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                <ff:CachedImage
+                                    Grid.Row="0" Grid.Column="3" Source="{Binding HomeLogo}" />
+                                <Grid
+                                    Grid.Row="0" Grid.Column="5">
+
+                                    <StackLayout
+                                        Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding NotStarted}">
+                                        <Image
+                                            Source="alarm.png" WidthRequest="16" HeightRequest="16"/>
+                                        <Label
+                                            FontSize="12" TextColor="Black"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                            Text="{Binding StartingTime}"/>
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding isLive}" Spacing="0">
+                                        <StackLayout
+                                            Orientation="Horizontal" HorizontalOptions="Center" Spacing="0">
+                                            <Label
+                                                FontSize="12" TextColor="Red" Text="{Binding CurrentMinute}" Margin="10,0,0,0"/>
+                                            <ff:CachedImage Source="red_dot.gif" VerticalOptions="Start" WidthRequest="10" HeightRequest="10"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                            Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+
+                                            <Label
+                                                FontSize="16" TextColor="{Binding HomeScoreColor}" Text="{Binding HomeScore}" FontAttributes="Bold"
+                                                HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                            <Label
+                                                FontSize="16" TextColor="Red" Text=":" FontAttributes="Bold"
+                                                HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                            <Label
+                                                FontSize="16" TextColor="{Binding AwayScoreColor}" Text="{Binding AwayScore}" FontAttributes="Bold"
+                                                HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding HasResult}">
+                                        <Label
+                                            FontSize="12" TextColor="#888888" Text="{Binding status}"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                        <Label
+                                            FontSize="16" TextColor="#888888" Text="{Binding Score}" 
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    </StackLayout>
+                                </Grid>
+                                <ff:CachedImage
+                                    Grid.Row="0" Grid.Column="7" Source="{Binding AwayLogo}" />
+                                <Label
+                                    Grid.Row="0" Grid.Column="9"
+                                    Text="{Binding AwayName}" TextColor="{Binding AwayNameColor}" FontSize="16" LineBreakMode="TailTruncation"
+                                    VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                <Image
+                                    Source="red_card.png" Grid.Row="0" Grid.Column="10" IsVisible="{Binding AwayHasRedCard}"/>
+                                <Image
+                                    Grid.Row="0" Grid.Column="12" Source="{Binding FavImage}"
+                                    HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding FavoriteCommand}" CommandParameter="{Binding .}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <AbsoluteLayout
+                                    Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"
+                                    IsVisible="{Binding isLive}" Padding="25,0">
+                                    <BoxView
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        AbsoluteLayout.LayoutBounds="{Binding Home_Score_Rect}"
+                                        BackgroundColor="{Binding Home_Score_Color}"/>
+                                    <BoxView
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        AbsoluteLayout.LayoutBounds="{Binding Away_Score_Rect}"
+                                        BackgroundColor="{Binding Away_Score_Color}"/>
+                                </AbsoluteLayout>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </local:YiListView.ItemTemplate>
+            </local:YiListView>
+        </StackLayout>
+
+        <StackLayout
+            x:Name="overlay"
+            IsVisible="False" BackgroundColor="Black" Opacity="0.75"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+
+        <StackLayout
+            x:Name="dateLayout"
+            IsVisible="False" BackgroundColor="Transparent"
+            VerticalOptions="FillAndExpand"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+            <Frame
+                BackgroundColor="White" CornerRadius="10"
+                HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                Margin="30,0" Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <Frame
+                        Grid.Row="0"
+                        BackgroundColor="Green" CornerRadius="10"
+                        Margin="0,0,0,-10" Padding="0">
+                        <Grid
+                            VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="10"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding Strings[Dashboard_Calendar]}" TextColor="White" FontAttributes="Bold"
+                                HorizontalTextAlignment="Start" HorizontalOptions="Start"
+                                VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                            <Frame
+                                Grid.Column="2" BackgroundColor="White" CornerRadius="5" Padding="0">
+                                <Label
+                                    Text="X" FontSize="20"
+                                    HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                                    VerticalTextAlignment="Center" VerticalOptions="Center"/>
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="HideCalendar"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                    <StackLayout
+                        Grid.Row="1" Padding="1"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        WidthRequest="250" HeightRequest="50"
+                        BackgroundColor="Gray">
+                        <Label
+                            Text="{Binding Strings[Dashboard_Yesterday]}" x:Name="yestday" BackgroundColor="White" FontSize="20"
+                            HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                            VerticalTextAlignment="Center" VerticalOptions="FillAndExpand"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PrevDay_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="2" Padding="1"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        WidthRequest="250" HeightRequest="50"
+                        BackgroundColor="Gray">
+                        <Label
+                            Text="{Binding Strings[Dashboard_Today]}" x:Name="today" BackgroundColor="#F2F2F2" FontSize="20" FontAttributes="Bold"
+                            HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                            VerticalTextAlignment="Center" VerticalOptions="FillAndExpand"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Today_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Row="3" Padding="1"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        WidthRequest="250" HeightRequest="50"
+                        BackgroundColor="Gray">
+                        <Label
+                            Text="{Binding Strings[Dashboard_Tomorrow]}" x:Name="tomorrow" BackgroundColor="White" FontSize="20"
+                            HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                            VerticalTextAlignment="Center" VerticalOptions="FillAndExpand"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="NextDay_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+
+    </AbsoluteLayout>
+    
+</ContentPage>

@@ -1,0 +1,51 @@
+﻿Splash_Monthly = 1 Mes
+Splash_MonthlyTip = Custo beneficio
+Splash_Featured = 3 Mes
+Splash_FeaturedTip = GANHE 10% DE DESCONTO
+Splash_Yearly = 1 Year
+Splash_YearlyTip = Ganhe 15% de desconto
+
+Login_Email = EMAIL
+Login_License = LICENSE
+Login_Login = LOGIN
+Login_BuyNow = Não tem licença? clique aqui
+Login_Invalid = Invalid Login, try again
+
+Settings_PremiumTips = Premium Tips
+Settings_TipsByTipsters = Tips By Tipsters
+Settings_Favorites = Favorito
+Settings_LiveAlert = Ao vivo
+Settings_RaceToGoal = Race To Goal
+
+Main_Dashboard = Início
+Main_Live = Ao vivo
+Main_Favorite = Favorito
+Main_Tips = Tips
+Main_Settings = Settings
+
+Dashboard_ExpandMatches = Expandir Jogos
+Dashboard_Calendar = Escolha a Data
+Dashboard_Yesterday = Ontem
+Dashboard_Today = Hoje
+Dashboard_Tomorrow = Amanhã
+
+Tips_PremiumTips = Premium Tips
+Tips_TipsByTipsters = Tips By Tipsters
+
+Favorite_NoGameTitle = Não existe jogos no favorito, por favor clique na estrela para adicionar um jogo
+Favorite_NoGameSubTitle = Add a favorite game by clicking on the star
+NoLiveGames = Não existe jogos ao vivo no momento
+NoLiveAlerts = Não existe nenhum alerta no momento, tente mais tarde
+
+setting_pushnotification = NOTIFICAÇÕES PUSH
+setting_ad = Gols e Live alert será notificado em jogos favoritos
+
+Timeline =  Sumário
+Prediction = Tips do jogo
+Statistic = Estátisticas
+Lineup = Escalação
+Rank = Rank
+
+OK = OK
+Cancel = Cancel
+Error = Error

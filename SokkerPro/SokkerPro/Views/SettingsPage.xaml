@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SokkerPro.Views.SettingsPage">
+    <StackLayout>
+        <AbsoluteLayout
+            Padding="0,25,0,0"
+            BackgroundColor="{StaticResource NavigationPrimary}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center"
+            HeightRequest="65">
+            <Image
+                Source="logo_tda_br.png" Margin="0,0,10,0"
+                AbsoluteLayout.LayoutFlags="XProportional"
+                AbsoluteLayout.LayoutBounds="1,11,168,41"/>
+        </AbsoluteLayout>
+
+        <Grid
+            Padding="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout
+                Grid.Row="1" Orientation="Horizontal"
+                HorizontalOptions="Center" VerticalOptions="Center">
+                <Image
+                    x:Name="PTImage">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="PTCommand"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="lang_pt.png" Margin="0,0,50,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="PTICommand"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image
+                    x:Name="ENImage">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="ENCommand"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="lang_en.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="ENICommand"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+
+
+            <Grid
+                Grid.Row="3">
+                <StackLayout
+                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" Margin="0,20">
+                    <Label
+                        Text="{Binding Strings[setting_pushnotification]}" FontAttributes="Bold" />
+                    <Label
+                        Text="{Binding Strings[setting_ad]}" FontSize="10" />
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="1" Grid.Column="0"
+                    Orientation="Horizontal">
+                    <Switch x:Name="PushNoti_PremiumTips" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="{Binding Strings[Settings_PremiumTips]}"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                           VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="2" Grid.Column="0"
+                    Orientation="Horizontal">
+                    <Switch x:Name="PushNoti_TipsByTipsters" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="{Binding Strings[Settings_TipsByTipsters]}"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                           VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="1" Grid.Column="1"
+                    Orientation="Horizontal">
+                    <Switch x:Name="PushNoti_Favorite" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="{Binding Strings[Settings_Favorites]}"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                           VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Row="2" Grid.Column="1"
+                    Orientation="Horizontal">
+                    <Switch x:Name="PushNoti_RaceToGoal" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label Text="{Binding Strings[Settings_RaceToGoal]}"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                           VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </StackLayout>
+</ContentPage>

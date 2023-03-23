@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local="clr-namespace:SokkerPro.Views;assembly=SokkerPro"             
+             mc:Ignorable="d"
+             x:Class="SokkerPro.Views.FavoritePage">
+    <AbsoluteLayout>
+        <StackLayout
+            Spacing="0"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <AbsoluteLayout
+                Padding="0,25,0,0"
+                BackgroundColor="{StaticResource NavigationPrimary}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                HeightRequest="65">
+                <Image
+                    Source="logo_tda_br.png" Margin="0,0,10,0"
+                    AbsoluteLayout.LayoutFlags="XProportional"
+                    AbsoluteLayout.LayoutBounds="1,11,168,41"/>
+            </AbsoluteLayout>
+            <Grid
+                VerticalOptions="FillAndExpand">
+                <StackLayout
+                    x:Name="NoGameMsg" Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="25">
+                    <Image Margin="50,10"
+                        Source="nolive_alert.png"/>
+                    <Label
+                        Text="{Binding Strings[Favorite_NoGameTitle]}" FontAttributes="Bold"
+                        HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                        VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                </StackLayout>
+
+                <local:YiListView
+                    x:Name="FavoriteList"
+                    VerticalOptions="FillAndExpand"
+                    HasUnevenRows="true" 
+                    IsGroupingEnabled="True"  SelectionMode="None"
+                    ItemTapped="OnFavoriteSelected">
+                    <local:YiListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid
+                                    Padding="10" BackgroundColor="#F1F1F1" HorizontalOptions="FillAndExpand"
+                                    RowSpacing="0" ColumnSpacing="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="24"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="4"/>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="5"/>
+                                    </Grid.RowDefinitions>
+
+                                    <ff:CachedImage Grid.Column="0" Grid.Row="1"  Source="{Binding CountryFlag}" Aspect="AspectFit"/>
+                                    <StackLayout
+                                        Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" Orientation="Horizontal" Spacing="10" VerticalOptions="Center">
+                                        <Label Text="{Binding CountryName}" FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                                        <Label Text="{Binding LeagueName}" FontSize="12" TextColor="Black"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </local:YiListView.GroupHeaderTemplate>
+
+                    <local:YiListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid
+                                    HorizontalOptions="FillAndExpand" Padding="10"
+                                    RowSpacing="5" ColumnSpacing="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="6"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image
+                                        Source="red_card.png" Grid.Row="0" Grid.Column="0" IsVisible="{Binding HomeHasRedCard}"/>
+                                    <Label
+                                        Grid.Row="0" Grid.Column="1"
+                                        Text="{Binding HomeName}" TextColor="Black" FontSize="16" LineBreakMode="TailTruncation"
+                                        HorizontalOptions="End" HorizontalTextAlignment="End"
+                                        VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                    <ff:CachedImage
+                                        Grid.Row="0" Grid.Column="3" Source="{Binding HomeLogo}" />
+                                    <Grid
+                                        Grid.Row="0" Grid.Column="5">
+
+                                        <StackLayout
+                                            Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding NotStarted}">
+                                            <Image
+                                                Source="alarm.png" WidthRequest="16" HeightRequest="16"/>
+                                            <Label
+                                                FontSize="12" TextColor="Black"
+                                                HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                                Text="{Binding StartingTime}"/>
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding isLive}" Spacing="0">
+                                            <StackLayout
+                                                Orientation="Horizontal" HorizontalOptions="Center" Spacing="0">
+                                                <Label
+                                                    FontSize="12" TextColor="Red" Text="{Binding CurrentMinute}" Margin="10,0,0,0"/>
+                                                <ff:CachedImage Source="red_dot.gif" VerticalOptions="Start" WidthRequest="10" HeightRequest="10"/>
+                                            </StackLayout>
+                                            <StackLayout
+                                                Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+
+                                                <Label
+                                                    FontSize="16" TextColor="{Binding HomeScoreColor}" Text="{Binding HomeScore}" FontAttributes="Bold"
+                                                    HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                                <Label
+                                                    FontSize="16" TextColor="Red" Text=":" FontAttributes="Bold"
+                                                    HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                                <Label
+                                                    FontSize="16" TextColor="{Binding AwayScoreColor}" Text="{Binding AwayScore}" FontAttributes="Bold"
+                                                    HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding HasResult}">
+                                            <Label
+                                                FontSize="12" TextColor="#888888" Text="{Binding status}"
+                                                HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                                            <Label
+                                                FontSize="16" TextColor="#888888" Text="{Binding Score}" 
+                                                HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                        </StackLayout>
+                                    </Grid>
+                                    <ff:CachedImage
+                                        Grid.Row="0" Grid.Column="7" Source="{Binding AwayLogo}" />
+                                    <Label
+                                        Grid.Row="0" Grid.Column="9"
+                                        Text="{Binding AwayName}" TextColor="Black" FontSize="16" LineBreakMode="TailTruncation"
+                                        VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                    <Image
+                                        Source="red_card.png" Grid.Row="0" Grid.Column="10" IsVisible="{Binding AwayHasRedCard}"/>
+                                    <Image
+                                        Grid.Row="0" Grid.Column="12" Source="{Binding FavImage}"
+                                        HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding FavoriteCommand}" CommandParameter="{Binding .}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                    <AbsoluteLayout
+                                        Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"
+                                        IsVisible="{Binding isLive}" Padding="25,0">
+                                        <BoxView
+                                            AbsoluteLayout.LayoutFlags="All"
+                                            AbsoluteLayout.LayoutBounds="{Binding Home_Score_Rect}"
+                                            BackgroundColor="{Binding Home_Score_Color}"/>
+                                        <BoxView
+                                            AbsoluteLayout.LayoutFlags="All"
+                                            AbsoluteLayout.LayoutBounds="{Binding Away_Score_Rect}"
+                                            BackgroundColor="{Binding Away_Score_Color}"/>
+                                    </AbsoluteLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </local:YiListView.ItemTemplate>
+                </local:YiListView>
+            </Grid>
+        </StackLayout>
+    </AbsoluteLayout>
+</ContentPage>

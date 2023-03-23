@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarSelectedItemColor="Black"
+            android:TabbedPage.BarBackgroundColor="#F2F2F2"
+            mc:Ignorable="d"
+            xmlns:views="clr-namespace:SokkerPro.Views"
+            x:Class="SokkerPro.Views.MainPage">
+
+    <NavigationPage
+        Title="{Binding Strings[Main_Dashboard]}" IconImageSource="deashboard_btn.png">
+        <x:Arguments>
+            <views:ItemsPage x:Name="Dashboard"/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage
+        Title="{Binding Strings[Main_Live]}" IconImageSource="live.png">
+        <x:Arguments>
+            <views:LivePage x:Name="Live"/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage
+        Title="{Binding Strings[Main_Favorite]}" IconImageSource="outline_star.png">
+        <x:Arguments>
+            <views:FavoritePage x:Name="Favorite"/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage
+        Title="{Binding Strings[Main_Tips]}" IconImageSource="tip.png">
+        <x:Arguments>
+            <views:TipsPage x:Name="Tips"/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage
+        Title="{Binding Strings[Main_Settings]}" IconImageSource="settings.png">
+        <x:Arguments>
+            <views:SettingsPage x:Name="Settings"/>
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

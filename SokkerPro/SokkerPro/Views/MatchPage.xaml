@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             mc:Ignorable="d"
+             x:Class="SokkerPro.Views.MatchPage"
+             x:Name="BrowseItemsPage">
+
+    <AbsoluteLayout>
+        <Grid
+            BackgroundColor="White"
+            RowSpacing="0"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <AbsoluteLayout
+                BackgroundColor="{StaticResource NavigationPrimary}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center"
+                Grid.Row="0">
+                <Image
+                    Source="detail_bg.png"
+                    Aspect="AspectFill"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+                <Image
+                    Source="back_arrow.png"
+                    AbsoluteLayout.LayoutFlags="None"
+                    AbsoluteLayout.LayoutBounds="5,25,32,32">
+                </Image>
+                <StackLayout
+                    AbsoluteLayout.LayoutFlags="None"
+                    AbsoluteLayout.LayoutBounds="0,20,50,50"
+                    BackgroundColor="Transparent">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="BackScreen"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Grid
+                    Padding="10,60,10,10"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    InputTransparent="True">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout
+                        Grid.Column="0"
+                        Orientation="Vertical"
+                        VerticalOptions="Center">
+                        <ff:CachedImage
+                            Source="{Binding Match.HomeLogo}"
+                            HeightRequest="48" WidthRequest="48"
+                            Aspect="AspectFit"/>
+                        <Label
+                            Text="{Binding Match.HomeName}"
+                            TextColor="White" FontSize="14"
+                            HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                    <Grid
+                        Grid.Column="1">
+
+                        <StackLayout
+                            Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding Match.NotStarted}">
+                            <Label
+                                FontSize="14" TextColor="White"
+                                HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                Text="{Binding Match.StartingTime}"/>
+                        </StackLayout>
+
+                        <StackLayout
+                            Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding Match.isLive}" Spacing="0">
+                            <StackLayout
+                                Orientation="Horizontal" HorizontalOptions="Center" Spacing="0">
+                                <Label
+                                    FontSize="20" TextColor="White" Text="{Binding Match.CurrentMinute}" Margin="10,0,0,0"/>
+                                <ff:CachedImage Source="white_dot.gif" VerticalOptions="Start" WidthRequest="10" HeightRequest="10"/>
+                            </StackLayout>
+                            <Label
+                                FontSize="24" TextColor="#00CC99" Text="{Binding Match.Score}"/>
+                        </StackLayout>
+
+                        <StackLayout
+                            Orientation="Vertical" HorizontalOptions="Center" IsVisible="{Binding Match.HasResult}">
+                            <Label
+                                FontSize="20" TextColor="White" Text="{Binding Match.status}" FontAttributes="Bold"
+                                HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <Label
+                                FontSize="28" TextColor="#00CC99" Text="{Binding Match.Score}" FontAttributes="Bold"
+                                HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout
+                        Grid.Column="2"
+                        Orientation="Vertical"
+                        VerticalOptions="Center">
+                        <ff:CachedImage
+                            Source="{Binding Match.AwayLogo}"
+                            HeightRequest="48" WidthRequest="48"
+                            Aspect="AspectFit"/>
+                        <Label
+                            Text="{Binding Match.AwayName}"
+                            TextColor="White" FontSize="14"
+                            HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                    <StackLayout IsVisible="{Binding Match.isLive}"
+                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+                        <AbsoluteLayout
+                            Margin="40,0" >
+                            <BoxView
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="{Binding Match.Home_Score_Rect}"
+                                BackgroundColor="{Binding Match.Home_Score_Color}"/>
+                            <BoxView
+                                AbsoluteLayout.LayoutFlags="All"
+                                AbsoluteLayout.LayoutBounds="{Binding Match.Away_Score_Rect}"
+                                BackgroundColor="{Binding Match.Away_Score_Color}"/>
+                        </AbsoluteLayout>
+                    </StackLayout>
+                </Grid>
+            </AbsoluteLayout>
+            <Frame
+                Grid.Row="1" CornerRadius="20" Margin="0,-20" BackgroundColor="White" HasShadow="False" />
+            <AbsoluteLayout
+                Grid.Row="1"
+                Margin="0"
+                HorizontalOptions="FillAndExpand">
+                <Image
+                    x:Name="fiveTabImage"
+                    Source="five_tab_1.png" IsVisible="False"
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    Aspect="Fill"/>
+                <Grid
+                    AbsoluteLayout.LayoutFlags="All"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Frame
+                        x:Name="selFrame" Grid.Column="0" BackgroundColor="Green" CornerRadius="10" Padding="0" Margin="5,0" HasShadow="False"/>
+                    <Label
+                        x:Name="timelineLabel" Grid.Column="0"
+                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        TextColor="White"
+                        Text="{Binding Strings[Timeline]}">
+                    </Label>
+                    <StackLayout
+                        Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectTimeline"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label
+                        x:Name="predictionLabel" Grid.Column="1"
+                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        Text="{Binding Strings[Prediction]}">
+                    </Label>
+                    <StackLayout
+                        Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectPrediction"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label
+                        x:Name="statisticLabel" Grid.Column="2"
+                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        Text="{Binding Strings[Statistic]}">
+                    </Label>
+                    <StackLayout
+                        Grid.Column="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectStatistic"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label
+                        x:Name="lineupLabel" Grid.Column="3"
+                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        Text="{Binding Strings[Lineup]}">
+                    </Label>
+                    <StackLayout
+                        Grid.Column="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectLineup"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label
+                        x:Name="rankLabel" Grid.Column="4"
+                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"
+                        Text="{Binding Strings[Rank]}">
+                    </Label>
+                    <StackLayout
+                        Grid.Column="4" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectRank"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Grid>
+            </AbsoluteLayout>
+
+            <StackLayout
+                x:Name="timelineLayout"
+                Grid.Row="2" BackgroundColor="#EDEDED"
+                Orientation="Vertical">
+                <Label
+                    Text="WAITING FOR START"
+                    HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                    VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    IsVisible="{Binding Match.NotStarted}">
+                </Label>
+                <oxy:PlotView Model="{Binding LiveChart}" BackgroundColor="White"
+                              HeightRequest="150" HorizontalOptions="FillAndExpand">
+                    <oxy:PlotView.Triggers>
+                        <DataTrigger TargetType="oxy:PlotView" Binding="{Binding Match.NotStarted}" Value="True">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </oxy:PlotView.Triggers>
+                </oxy:PlotView>
+                <ListView
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    HasUnevenRows = "true" 
+                    IsGroupingEnabled="True"
+                    BackgroundColor="White"
+                    ItemsSource="{Binding Timeline}">
+                    <ListView.Triggers>
+                        <DataTrigger TargetType="ListView" Binding="{Binding Match.NotStarted}" Value="True">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </ListView.Triggers>
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                     BackgroundColor="#EDEDED" >
+                                    <Label 
+                                        Text="{Binding Half_Name}" FontSize="14" FontAttributes="Bold"
+                                        Margin="20,5,0,5" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="10" >
+                                    <StackLayout
+                                        IsVisible="{Binding IsHomeEvent}" Orientation="Horizontal"
+                                        HorizontalOptions="Start" VerticalOptions="Center" Spacing="10">
+
+                                        <Label
+                                            Text="{Binding time}" TextColor="Black" WidthRequest="50"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                            VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                        <Image
+                                            Source="{Binding mark}"/>
+                                        <Label
+                                            Text="{Binding MainPlayer}" TextColor="Black"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                            VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                        <Label
+                                            Text="{Binding RelatePlayer}" TextColor="#888888"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                            VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                    <StackLayout
+                                        IsVisible="{Binding IsAwayEvent}" Orientation="Horizontal"
+                                        HorizontalOptions="End" VerticalOptions="Center" Spacing="10">
+                                        <Label
+                                            Text="{Binding RelatePlayer}" TextColor="#888888"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                            VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                        <Label
+                                            Text="{Binding MainPlayer}" TextColor="Black"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                            VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                        <Image
+                                            Source="{Binding mark}"/>
+                                        <Label
+                                            Text="{Binding time}" TextColor="Black" WidthRequest="50"
+                                            HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                                            VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                                    </StackLayout>                                    
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <Grid
+                x:Name="predictionLayout" Padding="15" RowSpacing="25"
+                Grid.Row="2" BackgroundColor="#EDEDED" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid
+                    Grid.Row="0" ColumnSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout
+                        Grid.Column="0" Spacing="0">
+                        <Label
+                            Text="1X2" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,5"
+                            TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                        <Frame
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"
+                            Padding="0" CornerRadius="7" BackgroundColor="#D7D7D7">
+                            <StackLayout
+                                Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Text="" TextColor="Black"/>
+                                <Frame
+                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HasShadow="False"
+                                    Padding="15" CornerRadius="7" BackgroundColor="#C8C8C8">
+                                    <Label
+                                        Text="{Binding prediction_1x2_title}" FontSize="20" FontAttributes="Bold" TextColor="{Binding prediction_1x2_color}"/>
+                                </Frame>
+                                <Label
+                                    Text="" TextColor="Black"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Column="1" Spacing="0">
+                        <Label
+                            Text="CORNER" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,5"
+                            TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                        <Frame
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"
+                            Padding="0" CornerRadius="7" BackgroundColor="#D7D7D7">
+                            <StackLayout
+                                Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Text="{Binding prediction_corner_title}" TextColor="Black"
+                                    HorizontalOptions="Center" VerticalOptions="End"
+                                    HorizontalTextAlignment="Center" VerticalTextAlignment="End"/>
+                                <Frame
+                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HasShadow="False"
+                                    Padding="15" CornerRadius="7" BackgroundColor="#C8C8C8">
+                                    <Label
+                                        Text="{Binding prediction_corner_value}" FontSize="20" FontAttributes="Bold" TextColor="{Binding prediction_corner_color}"/>
+                                </Frame>
+                                <Label
+                                    Text="HANDCAP" TextColor="Black"
+                                    HorizontalOptions="Center" VerticalOptions="Start"
+                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Column="2" Spacing="0">
+                        <Label
+                            Text="BTTS" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,5"
+                            TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                        <Frame
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"
+                            Padding="0" CornerRadius="7" BackgroundColor="#D7D7D7">
+                            <StackLayout
+                                Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Text="" TextColor="Black"/>
+                                <Frame
+                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HasShadow="False"
+                                    Padding="15" CornerRadius="7" BackgroundColor="#C8C8C8">
+                                    <Label
+                                        Text="{Binding prediction_btts_title}" FontSize="20" FontAttributes="Bold" TextColor="{Binding prediction_btts_color}"/>
+                                </Frame>
+                                <Label
+                                    Text="{Binding prediction_btts_value}" TextColor="Black"
+                                    HorizontalOptions="Center" VerticalOptions="Start"
+                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+                <Grid
+                    Grid.Row="1" ColumnSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout
+                        Grid.Column="0" Spacing="0">
+                        <Label
+                            Text="OVER 0.5 HT" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,5"
+                            TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                        <Frame
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"
+                            Padding="0" CornerRadius="7" BackgroundColor="#D7D7D7">
+                            <StackLayout
+                                Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Text="" TextColor="Black"/>
+                                <Frame
+                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HasShadow="False"
+                                    Padding="15" CornerRadius="7" BackgroundColor="#C8C8C8">
+                                    <Label
+                                        Text="{Binding prediction_over05_title}" FontSize="20" FontAttributes="Bold" TextColor="{Binding prediction_over05_color}"/>
+                                </Frame>
+                                <Label
+                                    Text="{Binding prediction_over05_value}" TextColor="Black"
+                                    HorizontalOptions="Center" VerticalOptions="Start"
+                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Column="1" Spacing="0">
+                        <Label
+                            Text="OVER 1.5 FT" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,5"
+                            TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                        <Frame
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"
+                            Padding="0" CornerRadius="7" BackgroundColor="#D7D7D7">
+                            <StackLayout
+                                Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Text="" TextColor="Black"/>
+                                <Frame
+                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HasShadow="False"
+                                    Padding="15" CornerRadius="7" BackgroundColor="#C8C8C8">
+                                    <Label
+                                        Text="{Binding prediction_over15_title}" FontSize="20" FontAttributes="Bold" TextColor="{Binding prediction_over15_color}"/>
+                                </Frame>
+                                <Label
+                                    Text="{Binding prediction_over15_value}" TextColor="Black"
+                                    HorizontalOptions="Center" VerticalOptions="Start"
+                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>    
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Column="2" Spacing="0">
+                        <Label
+                            Text="OVER 2.5 FT" HorizontalOptions="Center" HorizontalTextAlignment="Center" Margin="0,5"
+                            TextColor="Black" FontAttributes="Bold" FontSize="14"/>
+                        <Frame
+                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="False"
+                            Padding="0" CornerRadius="7" BackgroundColor="#D7D7D7">
+                            <StackLayout
+                                Spacing="0" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label
+                                    Text="" TextColor="Black"/>
+                                <Frame
+                                    HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HasShadow="False"
+                                    Padding="15" CornerRadius="7" BackgroundColor="#C8C8C8">
+                                    <Label
+                                        Text="{Binding prediction_over25_title}" FontSize="20" FontAttributes="Bold" TextColor="{Binding prediction_over25_color}"/>
+                                </Frame>
+                                <Label
+                                    Text="{Binding prediction_over25_value}" TextColor="Black"
+                                    HorizontalOptions="Center" VerticalOptions="Start"
+                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+
+            </Grid>
+            <StackLayout
+                x:Name="statisticLayout"
+                Grid.Row="2" BackgroundColor="#EDEDED" IsVisible="False"
+                Orientation="Vertical">
+                <Label
+                    Margin="8,15"
+                    Text="WAITING FOR START"
+                    HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                    VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    IsVisible="{Binding Match.NotStarted}">
+                </Label>
+                <ListView
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    RowHeight="50" 
+                    ItemsSource="{Binding Statistics}">
+                    <ListView.Triggers>
+                        <DataTrigger TargetType="ListView" Binding="{Binding Match.NotStarted}" Value="True">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="ListView" Binding="{Binding Match.NotStarted}" Value="False">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </ListView.Triggers>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="8, 0" ColumnSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="12"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Row="1" Grid.Column="0"
+                                        FontAttributes="Bold" FontSize="11"
+                                        Text="{Binding home}"
+                                        HorizontalTextAlignment="Start" HorizontalOptions="Start" />
+                                    <Label
+                                        Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+                                        FontAttributes="Bold" FontSize="11"
+                                        Text="{Binding type}"
+                                        HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                                    <Label
+                                        Grid.Row="1" Grid.Column="3"
+                                        FontAttributes="Bold" FontSize="11"
+                                        Text="{Binding away}"
+                                        HorizontalTextAlignment="End" HorizontalOptions="End" />
+
+                                    <AbsoluteLayout 
+                                        Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                        BackgroundColor="#F0F0F0" HeightRequest="3">
+
+                                        <BoxView
+                                            AbsoluteLayout.LayoutFlags="All"
+                                            AbsoluteLayout.LayoutBounds="{Binding home_width}"
+                                            BackgroundColor="{Binding home_color}">
+                                        </BoxView>
+                                    </AbsoluteLayout>
+
+                                    <AbsoluteLayout 
+                                        Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+                                        BackgroundColor="#F0F0F0" HeightRequest="3">
+
+                                        <BoxView
+                                            AbsoluteLayout.LayoutFlags="All"
+                                            AbsoluteLayout.LayoutBounds="{Binding away_width}"
+                                            BackgroundColor="{Binding away_color}">
+                                        </BoxView>
+                                    </AbsoluteLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout
+                x:Name="lineupLayout"
+                Grid.Row="2" BackgroundColor="#EDEDED" IsVisible="False"
+                Orientation="Vertical">
+                <Label
+                    Margin="8,15"
+                    Text="WAITING FOR START"
+                    HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                    VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    IsVisible="{Binding Match.NotStarted}"> 
+                </Label>
+                <ListView
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SeparatorVisibility="None"
+                    HasUnevenRows = "true" 
+                    ItemsSource="{Binding Lineups}">
+                    <ListView.Triggers>
+                        <DataTrigger TargetType="ListView" Binding="{Binding Match.NotStarted}" Value="True">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="ListView" Binding="{Binding Match.NotStarted}" Value="False">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </ListView.Triggers>
+                    <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout
+                                            Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="Start">
+                                            <Label
+                                                Text="{Binding home.lineup_number}"
+                                                VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"
+                                                FontAttributes="Bold"/>
+                                            <Label
+                                                Text="{Binding home.lineup_player}"
+                                                VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                        </StackLayout>
+                                        <StackLayout
+                                                Grid.Column="2"
+                                                Orientation="Horizontal"
+                                                HorizontalOptions="End">
+                                            <Label
+                                                    Text="{Binding away.lineup_player}"
+                                                    VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                            <Label
+                                                    Text="{Binding away.lineup_number}"
+                                                    VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"
+                                                    FontAttributes="Bold"/>
+                                        </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <StackLayout
+                x:Name="standingLayout"
+                Grid.Row="2" BackgroundColor="#EDEDED" IsVisible="False"
+                Orientation="Vertical">
+                <Grid Margin="8, 10" BackgroundColor="#F0F0F0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Text="#" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label
+                        Grid.Column="3"
+                        Text="MP" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label
+                        Grid.Column="4"
+                        Text="G" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Label
+                        Grid.Column="5"
+                        Text="PTS" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Grid>
+                <ListView
+                    SelectionMode="None"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="White"
+                    HasUnevenRows = "true" 
+                    ItemsSource="{Binding Standings}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="8, 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding overall_league_position}"
+                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <ff:CachedImage
+                                        Grid.Column="1" Source="{Binding team_logo}" />
+                                    <Label
+                                        Grid.Column="2" Text="{Binding team_name}"
+                                        VerticalTextAlignment="Center"
+                                        VerticalOptions="Center"/>
+                                    <Label
+                                        Grid.Column="3"
+                                        Text="{Binding overall_league_payed}"
+                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label
+                                        Grid.Column="4"
+                                        Text="{Binding overall_league_G}"
+                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    <Label
+                                        Grid.Column="5"
+                                        Text="{Binding overall_league_PTS}"
+                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </AbsoluteLayout>
+
+</ContentPage>

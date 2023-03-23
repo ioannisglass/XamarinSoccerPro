@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SokkerPro.Views.Splash"
+             BackgroundColor="#00FF33">
+    <ContentPage.Content>
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <Image x:Name="logo" Source="logo_tda_br.png" Margin="50,0" />
+            <!--<ScrollView
+                x:Name="buyitems" IsVisible="False" Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                Margin="50,0"
+                >
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Frame
+                        Padding="25" HorizontalOptions="FillAndExpand" Margin="30,0">
+                        <StackLayout>
+                            <Label
+                                Text="{Binding Strings[Splash_Monthly]}"
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="40" FontAttributes="Bold" TextColor="Black"/>
+                            <Label
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="40" Text="€ 9.99" TextColor="#00FF33" />
+
+                            <BoxView
+                                HeightRequest="1" HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#00FF33"/>
+
+                            <Label
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="30" Text="{Binding Strings[Splash_MonthlyTip]}" TextColor="#CCCCCC" />
+
+                            <Frame
+                                CornerRadius="10" BackgroundColor="#00FF33" Padding="0" Margin="10">
+                                <Button
+                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                    BackgroundColor="Transparent" Clicked="Monthly_Clicked"
+                                    Text="SUBSCRIBE NOW" TextColor="White" />
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="25" HorizontalOptions="FillAndExpand" Margin="30,0">
+                        <StackLayout>
+                            <Label
+                                Text="{Binding Strings[Splash_Featured]}"
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="40" FontAttributes="Bold" TextColor="Black"/>
+                            <Label
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="40" Text="€ 25.99" TextColor="#00FF33" />
+
+                            <BoxView
+                                HeightRequest="1" HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#00FF33"/>
+
+                            <Label
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="30" Text="{Binding Strings[Splash_FeaturedTip]}" TextColor="#CCCCCC" />
+
+                            <Frame
+                                CornerRadius="10" BackgroundColor="#00FF33" Padding="0" Margin="10">
+                                <Button
+                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                    BackgroundColor="Transparent" Clicked="Featured_Clicked"
+                                    Text="SUBSCRIBE NOW" TextColor="White" />
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="25" HorizontalOptions="FillAndExpand" Margin="30,0">
+                        <StackLayout>
+                            <Label
+                                Text="{Binding Strings[Splash_Yearly]}"
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="40" FontAttributes="Bold" TextColor="Black"/>
+                            <Label
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="40" Text="€ 99.99" TextColor="#00FF33" />
+
+                            <BoxView
+                                HeightRequest="1" HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#00FF33"/>
+
+                            <Label
+                                HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                                FontSize="30" Text="{Binding Strings[Splash_YearlyTip]}" TextColor="#CCCCCC" />
+
+                            <Frame
+                                CornerRadius="10" BackgroundColor="#00FF33" Padding="0" Margin="10">
+                                <Button
+                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                    BackgroundColor="Transparent" Clicked="Yearly_Clicked"
+                                    Text="SUBSCRIBE NOW" TextColor="White" />
+                            </Frame>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
